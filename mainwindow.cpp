@@ -1,10 +1,12 @@
- #include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
 #include <QMessageBox>
 #include <QCryptographicHash>
+#include "signin.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -65,5 +67,13 @@ void MainWindow::on_pushButton_register_clicked(){
 
     QMessageBox::information(this, "Database Error", "Registration failed");
     }
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    SignIn signinDialog(this); // Create the dialog, parented to MainWindow
+    signinDialog.setModal(true); // Make it modal (block interaction with MainWindow until closed)
+    signinDialog.exec(); // Show the dialog
 }
 
